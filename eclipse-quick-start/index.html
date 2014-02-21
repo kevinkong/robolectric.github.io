@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Robolectric</title>
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-19269905-1"]);
+  _gaq.push(["_trackPageview"]);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+    <link href="../stylesheets/application-5ae8d8e4.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="../javascripts/application-da39a3ee.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="page" class="container">
+        <div class="row">
+            <div id="sidebar" class="col-md-3">
+                <img class="logo" src="../images/robolectric-7fb6698b.png" />
+<ul class="nav nav-stacked">
+    <li class="nav-header"><a href="/">Getting Started</a></li>
+    <li class="nav-item"><a href="/maven-quick-start/">Maven</a></li>
+    <li class="nav-item"><a href="/intellij-quick-start/">IntelliJ</a></li>
+    <li class="nav-item"><a href="/eclipse-quick-start/">Eclipse</a></li>
+    <li class="nav-item"><a href="/download/">Download Jars</a></li>
+</ul>
+
+<ul class="nav nav-stacked">
+    <li class="nav-header"><a href="/user-guide/">User Guide</a>
+    <li class="nav-item"><a href="/activity-lifecycle/">Driving the Activity Lifecycle</a></li>
+    <li class="nav-item"><a href="/apklibs/">Working with ApkLibs</a></li>
+</ul>
+
+<ul class="nav nav-stacked">
+    <li class="nav-header"><a href="/extending/">Extending</a></li>
+    <li class="nav-item"><a href="/customizing/">Test Runner</a></li>
+    <li class="nav-item"><a href="/roboguice/">RoboGuice (Part 1)</a></li>
+    <li class="nav-item"><a href="/roboguice2/">RoboGuice (Part 2)</a></li>
+</ul>
+
+<ul class="nav nav-stacked">
+    <li class="nav-header"><a href="/contributor-guidelines/">Contributing</a></li>
+    <li class="nav-item"><a href="/android-jars/">Real Android Jars</a></li>
+</ul>
+
+<ul class="nav nav-stacked">
+    <li class="nav-header"><a href="/resources/">Resources</a></li>
+    <li class="nav-item"><a href="/javadoc/?overview-summary.html">JavaDoc</a></li>
+    <li class="nav-item"><a href="/release-notes/">Release Notes</a></li>
+
+    <li class="nav-item"><a href="http://robolectric.blogspot.com">Blog</a></li>
+    <li class="nav-item"><a href="http://groups.google.com/group/robolectric">Google Group</a></li>
+</ul>
+            </div>
+            <div id="content" class="col-md-9">
+                <h2>Quick Start for Eclipse</h2>
+
+<h2>Maven</h2>
+
+<p>To open the project in Eclipse, make sure you have the
+<a href="http://m2eclipse.sonatype.org/installing-m2eclipse.html">M2Eclipse plugin</a> installed, then:
+*  android update project -p $PATH &ndash;target xxx
+* Import&hellip; &rarr; Existing Maven Projects, find your project.
+* &lt;right click project&gt; &rarr; Android &rarr; Convert to Android Project
+* &lt;right click &ldquo;gen&rdquo; folder&gt; &rarr; Build Path &rarr; Add to Build Path</p>
+
+<h3>Project Creation</h3>
+
+<hr>
+
+<p>Create a project
+- File &rarr; New &rarr; Project&hellip; &rarr; Android &rarr; Android Project
+- Click &ldquo;Next&rdquo;</p>
+
+<p>New Android Project dialog
+- Project Name: MyProject
+- Build Target: Click Target Name: &ldquo;Google APIs&rdquo;, Vendor: &ldquo;Google Inc.&rdquo;, Platform &ldquo;2.2&rdquo;, Api Level: &ldquo;8&rdquo;
+- Type &lsquo;com.example&rsquo; in package name
+- Check Create Activity, enter &ldquo;MyActivity&rdquo;
+- Click &ldquo;Finish&rdquo; (Do NOT create an Android Test project)</p>
+
+<p>Add a source test directory to your project
+- Right click on &lsquo;MyProject&rsquo; in the package explorer &rarr; New&hellip; &rarr; Folder
+- Folder name: test (do not make this a source folder for this project - hang tight)
+- Click &ldquo;Finish&rdquo;</p>
+
+<h3>Create a <em>JAVA</em> project for your tests</h3>
+
+<hr>
+
+<p>Create and configure test Java project
+- File &rarr; New &rarr; Java Project&hellip;
+- Project Name: MyProjectTest
+- Click &ldquo;Next&rdquo;
+- Expand the MyProjectTest row and select the &ldquo;src&rdquo; row
+- Click link &ldquo;Remove source folder &lsquo;src&rsquo; from build path&rdquo;
+- Click link &ldquo;Link additional source&rdquo;
+- Browse to and select &ldquo;&hellip;/MyProject/test&rdquo;
+- Click &ldquo;Finish&rdquo; on the &ldquo;Link additional sources&rdquo; dialog (keep the new Java project dialog open)</p>
+
+<p>Add dependency on the Android project
+- Select &ldquo;Projects&rdquo; tab at the top of the New Java Project dialog
+- Click &ldquo;Add&hellip;&rdquo;
+- Check &ldquo;MyProject&rdquo;
+- Click &ldquo;OK&rdquo;
+- Click &ldquo;Finish&rdquo; closing the new Java project dialog</p>
+
+<h3>Add required directory structure and jars to test project</h3>
+
+<p>At the command line:
+<pre>
+mkdir -p .../MyProjectTest/lib
+cp .../robolectric-X.X.X-jar-with-dependencies.jar .../MyProjectTest/lib
+</pre></p>
+
+<h3>Configure build path</h3>
+
+<p>Back in Eclipse
+- Right click &ldquo;MyProjectTest&rdquo;
+- Select &ldquo;Refresh&rdquo;
+- Right click &ldquo;MyProjectTest&rdquo;
+- Select &ldquo;Build Path&rdquo; &rarr; &ldquo;Configure Build Path&hellip;&rdquo;</p>
+
+<p>Add JUnit library
+- Select &ldquo;Libraries&rdquo; tab at the top of the Properties dialog for MyProjectTest
+- Click &ldquo;Add Library&rdquo;
+- Select &ldquo;JUnit&rdquo;
+- Click &ldquo;Next&rdquo;
+- Select JUnit library version 4 (Robolectric is <em>not</em> compatible with JUnit 3)
+- Click &ldquo;Finish&rdquo; (keep the Properties dialog for MyProjectTest open)</p>
+
+<p>Add Robolectric jar
+- Click &ldquo;Add JARs&hellip;&rdquo;
+- Expand MyProjectTest &rarr; lib
+- Select robolectric-X.X.X-jar-with-dependencies.jar
+- Click &ldquo;OK&rdquo; (keep the Properties dialog for MyProjectTest open)</p>
+
+<p>Add Android Jars
+- Click &ldquo;Add External Jars&hellip;&rdquo;
+- Navigate to &lt;your android install directory&gt;/platforms/android-8/android.jar
+- Click &ldquo;Open&rdquo;  (keep the Properties dialog for MyProjectTest open)
+- Click &ldquo;Add External Jars&hellip;&rdquo;
+- Navigate to &lt;your android install directory&gt;/add-ons/addon<em>google</em>apis<em>google</em>inc_8/libs/maps.jar
+- Click &ldquo;Open&rdquo;
+- Click &ldquo;OK&rdquo; on the Properties for MyProjectTest dialog</p>
+
+<h3>Create a test Run Configuration</h3>
+
+<hr>
+
+<p>Your tests will <em>not</em> run without this step. Your resources will not be found.
+- &ldquo;Run&rdquo; &rarr; &ldquo;Run Configurations&hellip;&rdquo;
+- Double click &ldquo;<em>JUnit</em>&rdquo; (not &ldquo;Android JUnit Test&rdquo;)
+- Name: MyProjectTestConfiguration
+- Select the &ldquo;Run all tests in the selected project, package or source folder:&rdquo; radio button
+- Click the &ldquo;Search&rdquo; button
+- Select &ldquo;MyProjectTest&rdquo;
+- TestRunner: JUnit 4
+- Click on the link &ldquo;Multiple launchers available Select one&hellip;&rdquo; at the bottom of the dialog
+- Check the &ldquo;Use configuration specific settings&rdquo; box
+- Select &ldquo;Eclipse JUnit Launcher&rdquo;
+- Click &ldquo;OK&rdquo;
+- Click the &ldquo;Arguments&rdquo; tab
+- Under &ldquo;Working directory:&rdquo; select the &ldquo;Other:&rdquo; radio button
+- Click &ldquo;Workspace&hellip;&rdquo;
+- Select &ldquo;MyProject&rdquo; (<em>not</em> &ldquo;MyProjectTest&rdquo;, The value inside of &lsquo;Other&rsquo; edit box should be &lsquo;${workspace_loc:MyProject}&rsquo;)
+- Click &ldquo;OK&rdquo;
+- Click &ldquo;Close&rdquo;</p>
+
+<h3>Verify your setup</h3>
+
+<hr>
+
+<ul>
+<li>Right click the &ldquo;test&rdquo; folder under &ldquo;MyProjectTest&rdquo;</li>
+<li>Select &ldquo;New&rdquo;&rarr;&ldquo;Class&rdquo;</li>
+<li>Package: &ldquo;com.example&rdquo;</li>
+<li>Name: &ldquo;MyActivityTest&rdquo;</li>
+<li>Click &ldquo;Finish&rdquo;</li>
+<li>Add the following source:</li>
+</ul>
+<pre class="highlight java"><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">example</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.example.MyActivity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.example.R</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.xtremelabs.robolectric.RobolectricTestRunner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.runner.RunWith</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">hamcrest</span><span class="o">.</span><span class="na">CoreMatchers</span><span class="o">.</span><span class="na">equalTo</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">Assert</span><span class="o">.</span><span class="na">assertThat</span><span class="o">;</span>
+
+<span class="nd">@RunWith</span><span class="o">(</span><span class="n">RobolectricTestRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyActivityTest</span> <span class="o">{</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">shouldHaveHappySmiles</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">hello</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyActivity</span><span class="o">().</span><span class="na">getResources</span><span class="o">().</span><span class="na">getString</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">hello</span><span class="o">);</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">hello</span><span class="o">,</span> <span class="n">equalTo</span><span class="o">(</span><span class="s">"Hello World, MyActivity!"</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre>
+<p>To run the tests
+- &ldquo;Run&rdquo; &rarr; &ldquo;Run Configurations&hellip;&rdquo;
+- Select &ldquo;JUnit&rdquo; &rarr; &ldquo;MyProjectTestConfiguration&rdquo;
+- Click &ldquo;Run&rdquo;</p>
+
+<h3><em>If you get a RuntimeException saying: &ldquo;no such layout layout/main&rdquo;</em></h3>
+
+<hr>
+
+<p>It means that you have tried to run a test for which you do not have a Run Configuration set up. To remedy this:
+- Right click on the test
+- &ldquo;Run As&rdquo; &rarr; &ldquo;Run Configurations&hellip;&rdquo;
+- Double click &ldquo;JUnit&rdquo; (this will magically make the test you&rsquo;re running appear under JUnit)
+- Select &ldquo;MyActivityTest&rdquo; (or the name of whichever test you are currently trying to run)
+- TestRunner: JUnit 4
+- Click on the link &ldquo;Multiple launchers available Select one&hellip;&rdquo; (or it also may appear as &ldquo;Using XXX Launcher - Select
+other&hellip;&rdquo;) at the bottom of the dialog
+- Check the &ldquo;Use configuration specific settings&rdquo; box
+- Select &ldquo;Eclipse JUnit Launcher&rdquo;
+- Click &ldquo;OK&rdquo;
+- Click the &ldquo;Arguments&rdquo; tab
+- Under &ldquo;Working directory:&rdquo; select the &ldquo;Other:&rdquo; radio button
+- Click &ldquo;Workspace&hellip;&rdquo;
+- Select &ldquo;MyProject&rdquo; (<em>not</em> &ldquo;MyProjectTest&rdquo;)
+- Click &ldquo;OK&rdquo;
+- Click &ldquo;Close&rdquo;</p>
+
+<p>Are these instructions helpful? confusing? <a href="http://groups.google.com/group/robolectric">Let us know</a>! any feedback is helpful. Thanks -Robolectric</p>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
